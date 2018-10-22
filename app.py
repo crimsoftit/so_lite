@@ -11,7 +11,6 @@ app = Flask(__name__)
 
 # config
 app.config.from_object(os.environ["APP_SETTINGS"])
-print(os.environ["APP_SETTINGS"])
 
 # create the sqlalchemy object
 db = SQLAlchemy(app)
@@ -85,10 +84,6 @@ def my_qstns():
 def my_answers():
     return render_template("my_answers.html")
 
-"""
-def connect_db():
-    return sqlite3.connect("posts.db")
-"""
 
 
 if __name__ == "__main__":
