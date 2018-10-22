@@ -45,7 +45,7 @@ class FlaskTestCase(unittest.TestCase):
     def test_posts(self):
         tester = app.test_client(self)
         response = tester.get('/', content_type="html/text")
-        self.assertTrue(b'ni yule mguyz' in response.data)
+        self.assertTrue(b'sisemi kitu' in response.data)
 
     def test_profile_route_requires_login(self):
         tester = app.test_client(self)

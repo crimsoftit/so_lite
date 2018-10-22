@@ -1,13 +1,21 @@
 from functools import wraps
 from flask import Flask, session, redirect, \
- url_for, request, render_template, flash, g
-import sqlite3
+ url_for, request, render_template, flash
+from flask_sqlalchemy import SQLAlchemy
+import os
+# import sqlite3
 
 
+# create the application object
 app = Flask(__name__)
 
-app.secret_key = 'yule_mguyz'
-app.database = "sample.db"
+# config
+app.config.from_object(os.environ["APP_SETTINGS"])
+
+# create the sqlalchemy object
+db = SQLAlchemy(app)
+
+from models import *
 
 
 # login required decorator
@@ -24,10 +32,7 @@ def login_required(f):
 
 @app.route('/')
 def index():
-    g.db = connect_db()
-    cur = g.db.execute("SELECT * from posts")
-    posts = [dict(title=row[0], description=row[1]) for row in cur.fetchall()]
-    g.db.close()
+    posts = db.session.query(BlogPost).all()
     return render_template("index.html", posts=posts)
 
 
@@ -79,9 +84,10 @@ def my_qstns():
 def my_answers():
     return render_template("my_answers.html")
 
-
+"""
 def connect_db():
-    return sqlite3.connect(app.database)
+    return sqlite3.connect("posts.db")
+"""
 
 
 if __name__ == "__main__":
