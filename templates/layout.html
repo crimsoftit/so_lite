@@ -12,37 +12,44 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
         <!-- custom css -->
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}">  
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+         
+
+        <!-- fontawesome icons -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+        <!-- jquery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
     </head>
 
     <body>
+        
         <div class="container">
 
             <header>
                 <div class="logo">
-                    <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='img/logo.png') }}"></a> 
+                    <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo"></a> 
                 </div>
                 <div class="user_action">                    
-                    <ul class="user_btns">                        
-                        <li><a href="{{ url_for('login') }}" class="user"><i class="fa fa-sign-in-alt"></i> Login</a></li>
+                    <ul class="user_btns">
+                        {% if 'logged_in' in session %}
+                            <li><a href="{{ url_for('logout') }}" class="user"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
+                        {% else %}
+                            <li><a href="{{ url_for('login') }}" class="user"><i class="fa fa-sign-in-alt"></i> Login</a></li>
+                        {% endif %}
                         <li><a href="{{ url_for('signup') }}" class="user"><i class="fas fa-user-plus"></i> Sign Up</a></li>
                         <li><a href="{{ url_for('profile') }}" class="user"><i class="fas fa-user"></i> Profile</a></li>
                     </ul>
                 </div>
             </header>
 
-
-
-            
-
             {% block content %}
             {% endblock %}
 
-
         </div>
-
+        <script type="text/javascript" src="{{ url_for('static', filename='js/js.js') }}"></script>
         
     </body>
 </html>

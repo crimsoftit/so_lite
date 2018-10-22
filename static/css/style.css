@@ -466,9 +466,10 @@ hr {
 #user_icon
 {
     font-size: 60px; 
-    border: 1px solid #ccc; 
+    border: 0.01em dashed #4CAF50; 
     padding: 20px;  
     border-radius: 50%;
+    color: #4CAF50;
 }
 /* ===========================
    ====== Search Box ====== 
@@ -572,12 +573,12 @@ hr {
 @media only screen and (max-width:1100px) {
     /* for mobile phones: */
     .side_bar {
-        width: 100%;
+        width: 25%;
         float: center;
     }
     .right
     {
-        width: 100%;
+        width: 70%;
         float: center;
     }
     .user_btns li
