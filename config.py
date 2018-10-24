@@ -6,6 +6,7 @@ class BaseConfig(object):
     DEBUG = False
     SECRET_KEY = "\xd2x\xbb\x85q/"
     SQLALCHEMY_DATABASE_URI = os.environ["DATABASE_URL"]
+    # print(SQLALCHEMY_DATABASE_URI)
 
 
 class DevConfig(BaseConfig):
