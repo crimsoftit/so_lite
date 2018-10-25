@@ -1,10 +1,6 @@
 from functools import wraps
 from flask import flash, redirect, render_template, request, \
     session, url_for, Blueprint
-from app import app
-from flask_bcrypt import Bcrypt
-
-bcrypt = Bcrypt(app)
 
 
 users_blueprint = Blueprint(
@@ -21,7 +17,7 @@ def login_required(f):
             return f(*args, **kwargs)
         else:
             flash("login required")
-            return redirect(url_for('login'))
+            return redirect(url_for('users.login'))
     return wrap
 
 
@@ -34,7 +30,7 @@ def login():
         else:
             session['logged_in'] = True
             flash('login successful')
-            return redirect(url_for('index'))
+            return redirect(url_for('home.index'))
     return render_template("login.html", error=error)
 
 
@@ -42,7 +38,7 @@ def login():
 def logout():
     session.pop('logged_in', None)
     flash('you were logged out')
-    return redirect(url_for("login"))
+    return redirect(url_for("users.login"))
 
 
 @users_blueprint.route("/signup", methods=['GET', 'POST'])

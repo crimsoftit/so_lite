@@ -8,9 +8,9 @@
                 <i class="fa fa-user" id="user_icon"></i>
 
                 <ul id="manage_ac">
-                    <li><button type="button" data-href="{{ url_for('my_qstns') }}" class="ac_btns">Most Answered Questions</button></li>
-                    <li><button type="button" data-href="{{ url_for('my_recent_qstns') }}" class="ac_btns">My Recent Questions</button></li>
-                    <li><button type="button" data-href="{{ url_for('my_answers') }}" class="ac_btns">My Answers (44)</button></li>
+                    <li><button type="button" data-href="{{ url_for('users.my_qstns') }}" class="ac_btns">Most Answered Qstns</button></li>
+                    <li><button type="button" data-href="{{ url_for('users.my_recent_qstns') }}" class="ac_btns">My Recent Questions</button></li>
+                    <li><button type="button" data-href="{{ url_for('users.my_answers') }}" class="ac_btns">My Answers (44)</button></li>
                 </ul>
             </p>
             
@@ -31,7 +31,7 @@
 
     <script type="text/javascript">
         jQuery(document).ready(function($) {
-            $('#loader').load("{{ url_for('my_qstns') }}");
+            $('#loader').load("{{ url_for('users.my_qstns') }}");
         });
     </script>
         
