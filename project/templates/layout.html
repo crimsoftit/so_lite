@@ -32,16 +32,19 @@
                 <div class="logo">
                     <a href="{{ url_for('home.index') }}"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo"></a> 
                 </div>
-                <div class="user_action">                    
-                    <ul class="user_btns">
+                <div class="user_action">
+                    <div class="topnav" id="myTopnav">
                         {% if 'logged_in' in session %}
-                            <li><a href="{{ url_for('users.logout') }}" class="user"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
+                            <a href="{{ url_for('users.logout') }}" class="user"><i class="fa fa-sign-out-alt"></i> Logout &nbsp; </a>
                         {% else %}
-                            <li><a href="{{ url_for('users.login') }}" class="user"><i class="fa fa-sign-in-alt"></i> Login</a></li>
+                            <a href="{{ url_for('users.login') }}" class="user"><i class="fa fa-sign-in-alt"></i> Login &nbsp; </a>
                         {% endif %}
-                        <li><a href="{{ url_for('users.signup') }}" class="user"><i class="fas fa-user-plus"></i> Sign Up</a></li>
-                        <li><a href="{{ url_for('users.profile') }}" class="user"><i class="fas fa-user"></i> Profile</a></li>
-                    </ul>
+                        <a href="{{ url_for('users.signup') }}" class="user"><i class="fas fa-user-plus"></i> Sign Up &nbsp;</a>
+                        <a href="{{ url_for('users.profile') }}" class="user"><i class="fas fa-user"></i> Profile &nbsp; </a>
+                        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                    </div>
                 </div>
             </header>
 
@@ -50,6 +53,16 @@
 
         </div>
         <script type="text/javascript" src="{{ url_for('static', filename='js/js.js') }}"></script>
+        <script>
+            function makeResponsive() {
+                var x = document.getElementById("myTopnav");
+                if (x.className === "topnav") {
+                    x.className += " responsive";
+                } else {
+                    x.className = "topnav";
+                }
+            }
+        </script>
         
     </body>
 </html>

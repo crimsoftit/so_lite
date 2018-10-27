@@ -2,6 +2,7 @@ from project import app, db
 from project.models import BlogPost
 from functools import wraps
 from flask import session, redirect, url_for, render_template, flash, Blueprint
+from flask_login import login_required
 
 
 # config
@@ -11,18 +12,7 @@ home_blueprint = Blueprint(
     )
 
 
-# login required decorator
-def login_required(f):
-    @wraps(f)
-    def wrap(*args, **kwargs):
-        if 'logged_in' in session:
-            return f(*args, **kwargs)
-        else:
-            flash("login required")
-            return redirect(url_for('users.login'))
-    return wrap
-
-
+# routes
 @home_blueprint.route('/')
 def index():
     posts = db.session.query(BlogPost).all()
